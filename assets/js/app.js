@@ -190,7 +190,7 @@
             els.tableWrap.innerHTML = '<div class="empty-state"><div class="big">Tuần ' + w.tuan +
               ' đang mở nhập liệu</div><p>File báo cáo tuần này đã có trên Drive và đang chờ giáo viên nhập số liệu ' +
               '(thứ 2 ' + (w.tu || "") + ' – thứ 6 ' + (w.den || "") + '). Khi có dữ liệu, tuần này sẽ hiện đầy đủ như các tuần trước.</p>' +
-              '<a class="btn primary" href="https://docs.google.com/spreadsheets/d/18emcHAiewA4SuS7F8tWdawiISLPAR4E-/edit?usp=drivesdk&amp;ouid=115290489030694063954&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">Mở file Tuần 12 để nhập liệu</a></div>';
+              '<a class="btn primary" href="https://docs.google.com/spreadsheets/d/18emcHAiewA4SuS7F8tWdawiISLPAR4E-/edit?usp=drivesdk&amp;ouid=115290489030694063954&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">Tuần nhập báo cáo hiện tại: Tuần 12 từ 23/11/2026 đến 27/11/2026</a></div>';
             return;
           }
           if (rows.length === 0) {
@@ -345,7 +345,7 @@
               pts.map(function (p) { return p.x + "," + p.y; }).join(" ") + '"/>';
           }
           pts.forEach(function (p) {
-            s += '<circle cx="' + p.x + '" cy="' + p.y + '" r="4" fill="var(--orange)"><title>Tuần ' + p.t + ": HS hoàn thành " + fmtPct(p.v) + "</title></circle>" +
+            s += '<circle cx="' + p.x + '" cy="' + p.y + '" r="4.5" fill="var(--green)" stroke="var(--surface)" stroke-width="1.5"><title>Tuần ' + p.t + ": HS hoàn thành " + fmtPct(p.v) + "</title></circle>" +
               '<text x="' + p.x + '" y="' + (p.y - 9) + '" text-anchor="middle" font-size="11" font-weight="600" fill="var(--orange)">' + fmtPct(p.v) + "</text>";
           });
           s += "</svg>";

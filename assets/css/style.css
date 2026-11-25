@@ -8,6 +8,7 @@
         --blue: #0a5cad;
         --blue-soft: #e3eefb;
         --orange: #e85d10;
+        --orange-ink: #b04308;
         --orange-soft: #fdeadd;
         --green: #178a5b;
         --green-soft: #e2f4ec;
@@ -30,6 +31,7 @@
           --blue: #5ea8ec;
           --blue-soft: #17334d;
           --orange: #ff8a4d;
+          --orange-ink: #ffab7a;
           --orange-soft: #40240f;
           --green: #4cc48d;
           --green-soft: #123528;
@@ -297,3 +299,49 @@
       footer .foot-note { color: var(--ink-soft); font-size: 12.5px; max-width: 70ch; }
       footer .credit { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-align: right; white-space: nowrap; }
       footer .credit b { color: var(--ink); }
+
+      /* ---------- Tri-color system: blue – orange – green, applied consistently ----------
+         Blue = structure & primary actions · Orange = current week & attention ·
+         Green = completed / positive. Soft tints only, same roles in light and dark. */
+      /* Section headings carry a small chip in their section color */
+      .sec-head { --sc: var(--blue); }
+      .sec-head.c-orange { --sc: var(--orange); }
+      .sec-head.c-green { --sc: var(--green); }
+      .sec-head h2 { display: flex; align-items: center; gap: 10px; }
+      .sec-head h2::before {
+        content: ""; flex: 0 0 auto; width: 10px; height: 10px; border-radius: 3px; background: var(--sc);
+      }
+      /* Week pills: gentle blue hover; active stays blue, "this week" badge stays orange */
+      .week-pill:hover { border-color: var(--blue); }
+      /* Priority panel (Cần theo dõi) gets the orange attention accent */
+      .panel[aria-label="Học sinh cần theo dõi"] { border-top: 3px solid var(--orange); }
+      /* KPI cards: quiet tri-color top accent, one role per card */
+      .kpis .kpi:nth-child(1) { border-top: 3px solid var(--blue); }
+      .kpis .kpi:nth-child(2) { border-top: 3px solid var(--green); }
+      .kpis .kpi:nth-child(3) { border-top: 3px solid var(--blue); }
+      .kpis .kpi:nth-child(4) { border-top: 3px solid var(--green); }
+      .kpis .kpi:nth-child(5) { border-top: 3px solid var(--orange); }
+      .kpis .kpi:nth-child(6) { border-top: 3px solid var(--orange); }
+      /* Attention flags move from red/amber to the orange family of the palette */
+      .flag.red { background: var(--orange-soft); color: var(--orange-ink); }
+      .flag.amber { background: var(--amber-soft); color: var(--amber); }
+      /* Completion bar: green = good, amber = mid, orange = low (no off-palette red) */
+      .pct-bar > i.low { background: var(--orange); }
+      /* Model tags: LHĐN blue, FSAL green */
+      .model-tag { background: var(--green-soft); color: var(--green); }
+      .model-tag.lhdn { background: var(--blue-soft); color: var(--blue); }
+      /* Clear keyboard focus in the primary blue */
+      .btn:focus-visible, .week-pill:focus-visible, .close-btn:focus-visible {
+        outline: 2px solid var(--blue); outline-offset: 2px;
+      }
+      /* Footer bookend: same blue – orange – green stripe as the header */
+      footer { position: relative; border-top: none; padding-top: 18px; }
+      footer::before {
+        content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 2px;
+        background: linear-gradient(90deg, var(--blue) 0 33.34%, var(--orange) 33.34% 66.67%, var(--green) 66.67% 100%);
+      }
+      footer .credit { display: flex; align-items: center; gap: 8px; }
+      footer .credit::before {
+        content: ""; width: 24px; height: 4px; border-radius: 2px; flex: 0 0 auto;
+        background: linear-gradient(90deg, var(--blue) 0 33.34%, var(--orange) 33.34% 66.67%, var(--green) 66.67% 100%);
+      }
