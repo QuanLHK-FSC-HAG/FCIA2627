@@ -27,8 +27,6 @@
           if (!isBlankish(r.lyDo)) f.push({ k: "lyDo", label: "HS chưa hoàn thành", cls: "red" });
           if (!isBlankish(r.hsLuuY)) f.push({ k: "luuY", label: "HS cần lưu ý", cls: "amber" });
           if (!isBlankish(r.suCo)) f.push({ k: "suCo", label: "Sự cố kỹ thuật", cls: "blue" });
-          var missing = num(r.tietKH) === null || num(r.tietDay) === null || num(r.haiLong) === null;
-          if (missing) f.push({ k: "thieu", label: "Thiếu số liệu", cls: "grey" });
           return f;
         }
 
@@ -299,7 +297,7 @@
             var v = r[f[0]];
             var missing = v === null || v === undefined || String(v).trim() === "";
             return '<div class="d-item' + (f[2] ? " full" : "") + '"><div class="d-label">' + f[1] +
-              '</div><div class="d-value' + (missing ? " missing" : "") + '">' + (missing ? "Chưa ghi" : esc(v)) + "</div></div>";
+              '</div><div class="d-value' + (missing ? " missing" : "") + '">' + (missing ? "Để trống (bình thường)" : esc(v)) + "</div></div>";
           }).join("") + extra;
           els.backdrop.classList.add("open");
           $("dialogClose").focus();
