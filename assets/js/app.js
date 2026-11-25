@@ -96,8 +96,8 @@
           var a = parseDMY(w.tu), b = parseDMY(w.den);
           var isNow = a && b && today >= a && today <= b;
           els.hint.textContent = isNow
-            ? "Đang xem tuần hiện tại — tuần này đang nhập liệu nên số liệu chưa đầy đủ. Số liệu trích từ Drive ngày 25/11/2026."
-            : "Số liệu trích từ Drive ngày 25/11/2026; chọn tuần khác ở trên.";
+            ? "Đang xem tuần hiện tại — tuần này đang nhập liệu nên số liệu chưa đầy đủ."
+            : "Chọn tuần khác ở trên.";
         }
 
         /* ---------- Filter options from current week ---------- */
