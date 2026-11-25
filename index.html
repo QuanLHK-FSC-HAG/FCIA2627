@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>FCIA - FSC HAG 2026-2027</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+<body>
+    <div class="wrap">
+      <header class="hero">
+        <div class="brand">
+          <span class="brand-plate"><img class="brand-logo" alt="Logo FPT Education — Trường Phổ thông FPT" /></span>
+        </div>
+        <h1><span class="t-blue">FCIA</span> <span class="t-sep">-</span> <span class="t-orange">FSC HAG</span> <span class="t-sep">-</span> <span class="t-green">2026-2027</span></h1>
+        <p class="lead">
+          Báo cáo giảng dạy FCIA (dạy học đảo ngược tích hợp AI Chatbot trên EduNext) của giáo viên
+          FSchool Hậu Giang, năm học 2026–2027. Mở trang là thấy ngay mục Cần theo dõi và báo cáo đầy đủ
+          của tuần liền kề trước; giáo viên chỉ cần mở đúng file của tuần đang nhập liệu.
+        </p>
+        <div class="hero-meta">
+          <span class="tag">Trường TH, THCS &amp; THPT FPT Hậu Giang</span>
+          <span class="tag">Tuần báo cáo: Thứ 2 – Thứ 6</span>
+        </div>
+        <div class="hero-links">
+          <a class="btn primary" href="https://docs.google.com/spreadsheets/d/18emcHAiewA4SuS7F8tWdawiISLPAR4E-/edit?usp=drivesdk&amp;ouid=115290489030694063954&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">Mở file Tuần 12 — tuần hiện tại để nhập liệu</a>
+        </div>
+      </header>
+
+      <div class="sec-head">
+        <h2>Chọn tuần báo cáo</h2>
+        <span class="hint" id="weekHint"></span>
+      </div>
+      <div class="weeks" id="weekPills" role="tablist" aria-label="Danh sách tuần báo cáo"></div>
+
+      <div class="sec-head">
+        <h2>Cần theo dõi</h2>
+        <span class="hint" id="watchCount"></span>
+      </div>
+      <section class="panel" aria-label="Học sinh cần theo dõi">
+        <div id="watchWrap"></div>
+      </section>
+
+      <section class="kpis" id="kpis" aria-label="Chỉ số tổng quan tuần"></section>
+
+      <div class="sec-head">
+        <h2>Bộ lọc báo cáo</h2>
+        <span class="hint">Lọc theo giáo viên, môn, lớp, campus, mô hình hoặc cờ cần chú ý</span>
+      </div>
+      <form class="filters" id="filterForm" onsubmit="return false">
+        <div>
+          <label for="fGv">Giáo viên</label>
+          <select id="fGv"></select>
+        </div>
+        <div>
+          <label for="fMon">Môn học</label>
+          <select id="fMon"></select>
+        </div>
+        <div>
+          <label for="fLop">Lớp</label>
+          <select id="fLop"></select>
+        </div>
+        <div>
+          <label for="fCampus">Campus</label>
+          <select id="fCampus"></select>
+        </div>
+        <div>
+          <label for="fModel">Mô hình FCIA</label>
+          <select id="fModel">
+            <option value="">Tất cả mô hình</option>
+            <option value="LHĐN">LHĐN — Lớp học đảo ngược</option>
+            <option value="FSAL">FSAL — Học tập tích cực</option>
+          </select>
+        </div>
+        <div>
+          <label for="fFlag">Cờ cần chú ý</label>
+          <select id="fFlag">
+            <option value="">Tất cả các dòng</option>
+            <option value="lyDo">Có HS chưa hoàn thành</option>
+            <option value="luuY">Có HS cần lưu ý</option>
+            <option value="suCo">Có sự cố kỹ thuật</option>
+            <option value="thieu">Thiếu số liệu</option>
+          </select>
+        </div>
+        <div class="f-search">
+          <label for="fQ">Tìm kiếm trong báo cáo</label>
+          <input type="search" id="fQ" placeholder="Tìm theo nội dung bài, khó khăn, công cụ AI, tên HS…" />
+        </div>
+        <div class="f-actions">
+          <button type="button" class="btn" id="btnReset">Xóa bộ lọc</button>
+        </div>
+      </form>
+      <p class="result-count" id="resultCount"></p>
+
+      <section class="panel" aria-label="Bảng báo cáo tuần">
+        <div class="panel-head">
+          <h3 id="tableTitle">Chi tiết báo cáo</h3>
+          <span class="hint">Bấm vào một dòng để xem đầy đủ 24 cột</span>
+        </div>
+        <div id="tableWrap"></div>
+      </section>
+
+      <div class="sec-head">
+        <h2>Diễn biến qua các tuần</h2>
+        <span class="hint">Số dòng báo cáo và tỷ lệ HS hoàn thành theo từng tuần</span>
+      </div>
+      <section class="panel chart-panel">
+        <div class="chart-legend">
+          <span><i style="background:var(--blue)"></i>Số dòng báo cáo (cột)</span>
+          <span><i class="lg-line"></i>Tỷ lệ HS hoàn thành (%)</span>
+        </div>
+        <div id="chartWrap"></div>
+      </section>
+
+      <footer>
+        <div class="foot-note">
+          Nguồn dữ liệu: các file “Báo cáo FCIA Tuần 01–12” trên Google Drive FCIA 2627, trích xuất ngày 25/11/2026.
+          Tuần 01–02 dùng định dạng Admin (không có cột môn học riêng); Tuần 10 giữ nguyên khoảng ngày 09–16/11/2026 như file gốc.
+        </div>
+        <div class="credit">Designed by <b>QuanLHK</b> with AI</div>
+      </footer>
+    </div>
+
+    <div class="mobile-bar">
+      <a class="btn primary" href="https://docs.google.com/spreadsheets/d/18emcHAiewA4SuS7F8tWdawiISLPAR4E-/edit?usp=drivesdk&amp;ouid=115290489030694063954&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">Nhập liệu Tuần 12 (tuần hiện tại)</a>
+    </div>
+
+    <div class="dialog-backdrop" id="dialogBackdrop" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
+      <div class="dialog">
+        <div class="dialog-head">
+          <div>
+            <h3 id="dialogTitle"></h3>
+            <div class="sub" id="dialogSub"></div>
+          </div>
+          <button class="close-btn" id="dialogClose" aria-label="Đóng">✕</button>
+        </div>
+        <div class="detail-grid" id="dialogBody"></div>
+      </div>
+    </div>
+
+    <script src="data/weeks.js"></script>
+    <script src="data/logo.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>
